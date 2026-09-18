@@ -1,0 +1,1 @@
+export default function Sobre(){return <main className='container p-4'><h2>ODS 2 - Fome Zero</h2><p>A plataforma apoia agricultores familiares com informação, educação ambiental e dados tecnológicos.</p><h3>Metas 2.3 e 2.4</h3></main>}

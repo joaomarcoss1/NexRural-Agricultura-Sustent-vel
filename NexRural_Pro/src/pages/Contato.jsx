@@ -1,0 +1,2 @@
+import {useState} from "react"; import {validate} from "../utils/validators";
+export default function Contato(){const [v,setV]=useState({nome:"",email:"",mensagem:""}),[m,setM]=useState("");return <main className="container p-4"><form onSubmit={e=>{e.preventDefault();setM(validate(v)?"Mensagem enviada com sucesso.":"Verifique os campos preenchidos.")}}>{["nome","email","mensagem"].map(x=><input className="form-control mb-2" placeholder={x} onChange={e=>setV({...v,[x]:e.target.value})}/>)}<button className="btn btn-success">Enviar</button></form><p>{m}</p></main>}

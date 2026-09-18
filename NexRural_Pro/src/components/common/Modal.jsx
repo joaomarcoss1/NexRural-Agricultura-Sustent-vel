@@ -1,0 +1,1 @@
+export default function Modal({item,close}){if(!item)return null;return <div className="modal-bg" onClick={close}><div className="modal-box" onClick={e=>e.stopPropagation()}><button onClick={close}>X</button><h3>{item.nome}</h3><p>{item.descricao}</p>{item.beneficios.map(b=><li>{b}</li>)}</div></div>}

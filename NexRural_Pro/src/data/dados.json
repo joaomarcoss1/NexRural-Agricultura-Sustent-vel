@@ -1,0 +1,85 @@
+[
+  {
+    "nome": "Compostagem",
+    "categoria": "Sustentabilidade",
+    "descricao": "Transformação de resíduos orgânicos em fertilizante natural.",
+    "beneficios": [
+      "Melhora do solo",
+      "Redução de resíduos"
+    ]
+  },
+  {
+    "nome": "Agricultura Orgânica",
+    "categoria": "Produção",
+    "descricao": "Cultivo sustentável com menor impacto ambiental.",
+    "beneficios": [
+      "Alimentos saudáveis",
+      "Preservação ambiental"
+    ]
+  },
+  {
+    "nome": "Rotação de Culturas",
+    "categoria": "Solo",
+    "descricao": "Alternância de culturas para recuperar nutrientes.",
+    "beneficios": [
+      "Solo fértil",
+      "Maior produtividade"
+    ]
+  },
+  {
+    "nome": "Irrigação Inteligente",
+    "categoria": "Tecnologia",
+    "descricao": "Uso eficiente de água na produção.",
+    "beneficios": [
+      "Economia de água"
+    ]
+  },
+  {
+    "nome": "Agrofloresta",
+    "categoria": "Ambiental",
+    "descricao": "Integra árvores e produção agrícola.",
+    "beneficios": [
+      "Biodiversidade"
+    ]
+  },
+  {
+    "nome": "Controle Biológico",
+    "categoria": "Manejo",
+    "descricao": "Controle de pragas usando organismos naturais.",
+    "beneficios": [
+      "Menos químicos"
+    ]
+  },
+  {
+    "nome": "Plantio Direto",
+    "categoria": "Solo",
+    "descricao": "Proteção do solo sem revolvimento excessivo.",
+    "beneficios": [
+      "Conservação"
+    ]
+  },
+  {
+    "nome": "Captação de Água",
+    "categoria": "Recursos",
+    "descricao": "Armazenamento de água da chuva.",
+    "beneficios": [
+      "Segurança hídrica"
+    ]
+  },
+  {
+    "nome": "Adubação Verde",
+    "categoria": "Sustentabilidade",
+    "descricao": "Uso de plantas para nutrir o solo.",
+    "beneficios": [
+      "Nutrientes naturais"
+    ]
+  },
+  {
+    "nome": "Energia Renovável Rural",
+    "categoria": "Tecnologia",
+    "descricao": "Uso de fontes limpas no campo.",
+    "beneficios": [
+      "Menor impacto"
+    ]
+  }
+]

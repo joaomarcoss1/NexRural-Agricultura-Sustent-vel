@@ -1,0 +1,1 @@
+export default function ResourceCard({item,click}){return <div className="card p-3 h-100" onClick={()=>click(item)}><h4>{item.nome}</h4><p>{item.categoria}</p></div>}

@@ -1,0 +1,1 @@
+export default function WeatherCard({title,value}){return <div className='card p-3'><h5>{title}</h5><b>{value}</b></div>}

@@ -1,0 +1,2 @@
+import {useEffect,useState} from "react"; import {getWeather} from "../services/api"; import WeatherCard from "../components/cards/WeatherCard";
+export default function Consulta(){const [d,setD]=useState(); useEffect(()=>{getWeather().then(setD)},[]);return <main className="container p-4"><h2>Painel Climático</h2>{d&&<div className="row"><WeatherCard title="Temperatura" value={d.current.temperature_2m+"°C"}/><WeatherCard title="Umidade" value={d.current.relative_humidity_2m+"%"}/><WeatherCard title="Chuva" value={d.current.precipitation+" mm"}/></div>}</main>}
