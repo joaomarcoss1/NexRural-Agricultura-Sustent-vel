@@ -1,1 +1,1 @@
-export default function Footer(){return <footer className='bg-dark text-white text-center p-3'>NexRural • ODS 2</footer>}
+export default function Footer(){return <footer className="site-footer"><div className="container footer-inner"><div><strong>NexRural</strong><p>Agroecologia inteligente para um futuro mais sustentável.</p></div><div className="footer-badges"><span>ODS 2</span><span>Agroecologia</span><span>Inovação</span></div></div></footer>}

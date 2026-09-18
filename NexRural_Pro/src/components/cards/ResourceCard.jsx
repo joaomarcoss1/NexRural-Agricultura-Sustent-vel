@@ -1,1 +1,1 @@
-export default function ResourceCard({item,click}){return <div className="card p-3 h-100" onClick={()=>click(item)}><h4>{item.nome}</h4><p>{item.categoria}</p></div>}
+export default function ResourceCard({item,click}){return <div className="resource-card" onClick={()=>click(item)}><div className="resource-icon">🌱</div><span className="resource-tag">{item.categoria}</span><h4>{item.nome}</h4><p>{item.descricao}</p><button type="button" className="card-action">Ver detalhes</button></div>}
