@@ -3,83 +3,140 @@
     "nome": "Compostagem",
     "categoria": "Sustentabilidade",
     "descricao": "Transformação de resíduos orgânicos em fertilizante natural.",
-    "beneficios": [
-      "Melhora do solo",
-      "Redução de resíduos"
-    ]
+    "descricaoCompleta": "A compostagem é o processo controlado de decomposição de resíduos orgânicos (restos de poda, palha, esterco e resíduos de colheita) pela ação de microrganismos, fungos e minhocas, resultando em um adubo rico em nutrientes e matéria orgânica estável. Quando bem manejada, reduz o volume de resíduos na propriedade, evita a queima de restos de cultura e devolve ao solo carbono e nutrientes que seriam perdidos.",
+    "comoImplementar": [
+      "Separar resíduos secos (palha, folhas) e úmidos (poda, esterco) na proporção aproximada de 3:1",
+      "Montar leiras ou usar composteiras, mantendo umidade semelhante a uma esponja torcida",
+      "Revolver a pilha a cada 7–15 dias para oxigenar e acelerar a decomposição",
+      "Utilizar o composto maturado (cor escura, sem odor forte) como adubo de base ou cobertura"
+    ],
+    "conceitosRelacionados": ["Matéria orgânica", "Microrganismos", "Ciclagem de nutrientes", "Redução de resíduos"],
+    "beneficios": ["Melhora do solo", "Redução de resíduos"]
   },
   {
     "nome": "Agricultura Orgânica",
     "categoria": "Produção",
     "descricao": "Cultivo sustentável com menor impacto ambiental.",
-    "beneficios": [
-      "Alimentos saudáveis",
-      "Preservação ambiental"
-    ]
+    "descricaoCompleta": "Sistema de produção que exclui o uso de agrotóxicos e fertilizantes sintéticos, priorizando adubação orgânica, controle biológico de pragas e rotação de culturas. No Brasil, é regulamentada pela Lei nº 10.831/2003 e certificada por organismos credenciados, agregando valor de mercado à produção familiar.",
+    "comoImplementar": [
+      "Substituir insumos químicos por adubos orgânicos e biofertilizantes",
+      "Adotar controle biológico e barreiras naturais contra pragas",
+      "Buscar certificação orgânica (individual, por auditoria ou participativa via OCS)",
+      "Diversificar cultivos para reduzir a dependência de monoculturas"
+    ],
+    "conceitosRelacionados": ["Certificação orgânica", "Agrotóxico zero", "Biodiversidade", "Valor agregado"],
+    "beneficios": ["Alimentos saudáveis", "Preservação ambiental"]
   },
   {
     "nome": "Rotação de Culturas",
     "categoria": "Solo",
     "descricao": "Alternância de culturas para recuperar nutrientes.",
-    "beneficios": [
-      "Solo fértil",
-      "Maior produtividade"
-    ]
+    "descricaoCompleta": "Consiste em alternar, na mesma área, espécies com diferentes exigências nutricionais e sistemas radiculares ao longo das safras. Essa prática interrompe o ciclo de pragas e doenças específicas de cada cultura, melhora a estrutura física do solo e equilibra a extração e a reposição de nutrientes.",
+    "comoImplementar": [
+      "Planejar um calendário de 2 a 4 anos alternando gramíneas, leguminosas e culturas de cobertura",
+      "Priorizar leguminosas (feijão-guandu, crotalária) para fixação biológica de nitrogênio",
+      "Evitar repetir a mesma família botânica na mesma área em safras consecutivas",
+      "Registrar o histórico de cultivo por talhão para orientar o planejamento seguinte"
+    ],
+    "conceitosRelacionados": ["Fixação de nitrogênio", "Manejo integrado de pragas", "Fertilidade do solo", "Sucessão de culturas"],
+    "beneficios": ["Solo fértil", "Maior produtividade"]
   },
   {
     "nome": "Irrigação Inteligente",
     "categoria": "Tecnologia",
     "descricao": "Uso eficiente de água na produção.",
-    "beneficios": [
-      "Economia de água"
-    ]
+    "descricaoCompleta": "Uso de sensores de umidade do solo, irrigação por gotejamento ou microaspersão e dados meteorológicos para aplicar água apenas na quantidade e no momento necessários. Reduz o desperdício hídrico, evita o estresse das plantas e diminui custos de energia associados ao excesso de irrigação.",
+    "comoImplementar": [
+      "Instalar sistema de gotejamento ou microaspersão direcionado à zona radicular",
+      "Monitorar a umidade do solo com sensores ou tensiômetros de baixo custo",
+      "Cruzar a previsão climática com a necessidade hídrica da cultura antes de irrigar",
+      "Programar a irrigação nos horários de menor evapotranspiração (manhã cedo ou fim da tarde)"
+    ],
+    "conceitosRelacionados": ["Uso racional da água", "Sensoriamento", "Evapotranspiração", "Eficiência hídrica"],
+    "beneficios": ["Economia de água"]
   },
   {
     "nome": "Agrofloresta",
     "categoria": "Ambiental",
     "descricao": "Integra árvores e produção agrícola.",
-    "beneficios": [
-      "Biodiversidade"
-    ]
+    "descricaoCompleta": "Sistema agroflorestal (SAF) que combina árvores nativas ou frutíferas, culturas agrícolas e, por vezes, criação animal no mesmo espaço, imitando a estrutura de um ecossistema florestal. Gera múltiplos estratos de produção, protege o solo contra erosão e amplia a biodiversidade e a renda do produtor.",
+    "comoImplementar": [
+      "Selecionar espécies de diferentes estratos (emergente, alto, médio, baixo e rasteiro)",
+      "Combinar árvores adubadoras de crescimento rápido com espécies de valor comercial de longo prazo",
+      "Planejar podas para regular o sombreamento sobre as culturas de ciclo curto",
+      "Iniciar em áreas piloto menores antes de expandir para toda a propriedade"
+    ],
+    "conceitosRelacionados": ["Estratificação vertical", "Biodiversidade", "Sistemas agroflorestais", "Serviços ecossistêmicos"],
+    "beneficios": ["Biodiversidade"]
   },
   {
     "nome": "Controle Biológico",
     "categoria": "Manejo",
     "descricao": "Controle de pragas usando organismos naturais.",
-    "beneficios": [
-      "Menos químicos"
-    ]
+    "descricaoCompleta": "Estratégia de manejo de pragas que utiliza inimigos naturais — predadores, parasitoides e microrganismos entomopatogênicos — para regular populações de insetos e doenças, reduzindo a dependência de agrotóxicos e preservando polinizadores e outros organismos benéficos do agroecossistema.",
+    "comoImplementar": [
+      "Identificar corretamente a praga-alvo antes de escolher o agente de controle",
+      "Conservar ou introduzir inimigos naturais já presentes na área (joaninhas, vespas parasitoides)",
+      "Utilizar bioinsumos à base de Bacillus thuringiensis ou fungos entomopatogênicos quando necessário",
+      "Monitorar periodicamente a lavoura para intervir antes de surtos generalizados"
+    ],
+    "conceitosRelacionados": ["Inimigos naturais", "Bioinsumos", "Manejo integrado de pragas", "Polinizadores"],
+    "beneficios": ["Menos químicos"]
   },
   {
     "nome": "Plantio Direto",
     "categoria": "Solo",
     "descricao": "Proteção do solo sem revolvimento excessivo.",
-    "beneficios": [
-      "Conservação"
-    ]
+    "descricaoCompleta": "Sistema de manejo em que a semeadura é feita sobre a palhada da cultura anterior, sem revolvimento do solo por arações ou gradagens. Mantém a cobertura vegetal permanente, reduz a erosão hídrica e eólica, conserva a umidade e favorece o acúmulo de matéria orgânica e a atividade biológica do solo.",
+    "comoImplementar": [
+      "Manter cobertura morta permanente com palhada ou plantas de cobertura",
+      "Utilizar semeadoras adaptadas para plantio direto, com discos de corte de palha",
+      "Evitar o tráfego excessivo de máquinas para prevenir compactação",
+      "Combinar com rotação de culturas para potencializar os benefícios ao solo"
+    ],
+    "conceitosRelacionados": ["Cobertura do solo", "Erosão", "Matéria orgânica", "Compactação"],
+    "beneficios": ["Conservação"]
   },
   {
     "nome": "Captação de Água",
     "categoria": "Recursos",
     "descricao": "Armazenamento de água da chuva.",
-    "beneficios": [
-      "Segurança hídrica"
-    ]
+    "descricaoCompleta": "Conjunto de técnicas para coletar, armazenar e reutilizar água de chuva — como cisternas, barraginhas e caixas de captação — garantindo reserva hídrica para períodos de estiagem e reduzindo a dependência de fontes externas de água para fins agrícolas e domésticos.",
+    "comoImplementar": [
+      "Instalar calhas e condutores que direcionem a água do telhado até cisternas",
+      "Construir barraginhas ou bacias de infiltração para reter água de escoamento superficial",
+      "Realizar manutenção periódica de filtros e reservatórios para evitar contaminação",
+      "Dimensionar a capacidade de armazenamento conforme o consumo e o regime de chuvas da região"
+    ],
+    "conceitosRelacionados": ["Segurança hídrica", "Cisternas", "Escoamento superficial", "Resiliência climática"],
+    "beneficios": ["Segurança hídrica"]
   },
   {
     "nome": "Adubação Verde",
     "categoria": "Sustentabilidade",
     "descricao": "Uso de plantas para nutrir o solo.",
-    "beneficios": [
-      "Nutrientes naturais"
-    ]
+    "descricaoCompleta": "Cultivo de plantas — geralmente leguminosas ou gramíneas de cobertura — incorporadas ou deixadas sobre o solo antes ou entre safras, com o objetivo de melhorar a fertilidade, a estrutura física e a atividade biológica do solo, além de suprimir plantas espontâneas indesejadas.",
+    "comoImplementar": [
+      "Escolher espécies conforme o objetivo: leguminosas para nitrogênio, gramíneas para palhada",
+      "Semear nas entressafras ou em consórcio com a cultura principal",
+      "Manejar (roçar ou rolar) próximo ao florescimento para maximizar a decomposição",
+      "Deixar os resíduos sobre o solo como cobertura morta, sem incorporação excessiva"
+    ],
+    "conceitosRelacionados": ["Leguminosas", "Cobertura morta", "Fertilidade do solo", "Supressão de plantas espontâneas"],
+    "beneficios": ["Nutrientes naturais"]
   },
   {
     "nome": "Energia Renovável Rural",
     "categoria": "Tecnologia",
     "descricao": "Uso de fontes limpas no campo.",
-    "beneficios": [
-      "Menor impacto"
-    ]
+    "descricaoCompleta": "Adoção de fontes limpas — como energia solar fotovoltaica, biogás produzido a partir de dejetos animais e pequenas centrais eólicas — para reduzir custos com energia elétrica e diesel na propriedade rural, diminuir a dependência de combustíveis fósseis e agregar sustentabilidade à produção.",
+    "comoImplementar": [
+      "Avaliar o potencial solar, eólico ou de biomassa disponível na propriedade",
+      "Dimensionar sistemas fotovoltaicos conforme o consumo médio de energia da unidade produtiva",
+      "Utilizar biodigestores para tratar dejetos animais e gerar biogás e biofertilizante",
+      "Buscar linhas de crédito rural específicas para energia renovável"
+    ],
+    "conceitosRelacionados": ["Energia solar", "Biodigestores", "Redução de custos", "Créditos de carbono"],
+    "beneficios": ["Menor impacto"]
   }
 ]
