@@ -79,6 +79,16 @@ export interface SeedEscritorio {
   feriados: Feriado[]; ajustes: AjusteFolha[]; folhas: Folha[]; config: Config; usuarios: Usuario[];
 }
 
+/** Base de um escritório NOVO (criado pela plataforma): cargos, escalas e feriados; nenhum funcionário. */
+export function baseEscritorioNovo(): Pick<SeedEscritorio, 'cargos' | 'escalas' | 'feriados'> {
+  const ano = Number(agoraBR().data.slice(0, 4));
+  return {
+    cargos: CARGOS_PADRAO.map((c, i) => ({ id: id('cargo', i + 1), ...c, ativo: true })),
+    escalas: ESCALAS_MODELO.map((e, i) => ({ id: id('escala', i + 1), ...e })),
+    feriados: [...feriadosPadrao(ano), ...feriadosPadrao(ano + 1)].map((f, i) => ({ id: id('fer', i + 1), ...f })),
+  };
+}
+
 /** Gera os dados de UM escritório. O relógio usado é o do fuso dele. */
 export async function gerarSeedEscritorio(def: DemoEscritorio, escritorioId: string): Promise<SeedEscritorio> {
   definirFuso(def.fuso);

@@ -23,7 +23,7 @@ import type {
   AnexarArgs, AnexoAberto, BaterArgs, Crud, Db, DocumentoVerificado, FolhasRepo, JustificarAusenciaArgs, JustificativaFunc, MarcacaoHistorico,
   PontoApi, PontoErro, ResumoExpurgo, RetroativoArgs, Sessao,
 } from './db';
-import { DEMO_ESCRITORIOS, DEMO_PLATAFORMA, gerarSeedEscritorio, hashSecreto } from './seed';
+import { DEMO_ESCRITORIOS, DEMO_PLATAFORMA, baseEscritorioNovo, gerarSeedEscritorio, hashSecreto } from './seed';
 
 const NS = 'ge.v1.';
 const K = { esc: `${NS}plataforma.escritorios`, plat: `${NS}plataforma.admins`, sessao: `${NS}sessao`, seeded: `${NS}seeded`, docs: `${NS}documentos` };
@@ -644,7 +644,8 @@ export function criarDbLocal(): Db {
         { const e = validarSenha(x.adminSenha); if (e) throw new ErroNegocio(x.adminSenha.length < 10 ? 'SENHA_CURTA' : 'SENHA_FRACA', e); }
         if (emailEmUso(email)) throw erro('EMAIL_EXISTE');
         const e: EscritorioLocal = { id: uuid(), nome: x.nome.trim(), slug, ativo: true, fuso: x.fuso || 'America/Fortaleza', created_at: agoraIso() };
-        const modelo = await gerarSeedEscritorio({ ...DEMO_ESCRITORIOS[0], slug, nome: e.nome, fuso: e.fuso, equipe: [] }, e.id);
+        definirFuso(e.fuso);
+        const modelo = baseEscritorioNovo();
         gravarTab(slug, 'cargos', modelo.cargos); gravarTab(slug, 'escalas', modelo.escalas);
         for (const t of ['funcionarios', 'registros', 'ocorrencias', 'ajustes', 'ajustes_dia', 'folhas', 'auditoria', 'anexos']) gravarTab(slug, t, []);
         gravarTab(slug, 'feriados', modelo.feriados);

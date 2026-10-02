@@ -22,6 +22,9 @@ bash ./gerar_atualizacao.sh
 PGOPTIONS="$QUIET" $P -d "$DB" -f atualizacao_definitiva.sql >/dev/null
 echo "atualizacao_definitiva.sql ok (3ª execução)"
 
+# paridade: os casos do JSON viram asserções SQL
+node ./gerar_paridade.mjs
+
 total=0
 for f in tests_[0-9]*.sql; do
   out=$($P -d "$DB" -f "$f" 2>&1 >/dev/null) || { echo "$out" | sed 's/^psql:[^ ]* //' | tail -20; echo "✗ $f FALHOU"; exit 1; }
