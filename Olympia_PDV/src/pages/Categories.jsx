@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Plus, Pencil, Trash2, Check, X, CornerDownRight, FolderTree, Tag } from 'lucide-react'
 import { useStore } from '../store/StoreContext'
 import { uid } from '../store/model'
-import { PageHeader } from '../components/ui'
+import { PageHeader, confirmDialog } from '../components/ui'
 
 function EditableRow({ name, count, onRename, onDelete, onAddChild, indent }) {
   const [editing, setEditing] = useState(false)
@@ -48,11 +48,11 @@ export default function Categories() {
 
   const addCat = (name, parentId = null) => update((d) => { d.categories.push({ id: uid(), name, parentId }) })
   const renameCat = (id, name) => update((d) => { d.categories.find((c) => c.id === id).name = name })
-  function deleteCat(c) {
+  async function deleteCat(c) {
     const n = countCat(c.id)
     const children = db.categories.filter((x) => x.parentId === c.id)
     const msg = `Excluir “${c.name}”${children.length ? ` e suas ${children.length} subcategorias` : ''}?${n ? ` ${n} produto(s) ficarão sem essa categoria.` : ''}`
-    if (!window.confirm(msg)) return
+    if (!(await confirmDialog({ title: 'Excluir categoria?', message: msg, confirmLabel: 'Excluir', danger: true }))) return
     const ids = new Set([c.id, ...children.map((x) => x.id)])
     update((d) => {
       d.categories = d.categories.filter((x) => !ids.has(x.id))
@@ -69,9 +69,10 @@ export default function Categories() {
     update((d) => { d.brands.push({ id: uid(), name }) })
   }
   const renameBrand = (id, name) => update((d) => { d.brands.find((b) => b.id === id).name = name })
-  function deleteBrand(b) {
+  async function deleteBrand(b) {
     const n = countBrand(b.id)
-    if (!window.confirm(`Excluir a marca “${b.name}”?${n ? ` ${n} produto(s) ficarão sem marca.` : ''}`)) return
+    const ok = await confirmDialog({ title: 'Excluir marca?', message: `Excluir a marca “${b.name}”?${n ? ` ${n} produto(s) ficarão sem marca.` : ''}`, confirmLabel: 'Excluir', danger: true })
+    if (!ok) return
     update((d) => {
       d.brands = d.brands.filter((x) => x.id !== b.id)
       for (const p of d.products) if (p.brandId === b.id) p.brandId = null

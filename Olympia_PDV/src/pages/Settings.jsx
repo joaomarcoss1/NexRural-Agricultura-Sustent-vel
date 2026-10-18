@@ -2,7 +2,7 @@ import { useRef, useState } from 'react'
 import { Store, Printer, CreditCard, ShieldAlert, Database, ImagePlus, Download, Upload } from 'lucide-react'
 import { useStore } from '../store/StoreContext'
 import { PAYMENT_METHODS, openSession } from '../store/model'
-import { PageHeader, Field, Switch, Segmented, MoneyInput } from '../components/ui'
+import { PageHeader, Field, Switch, Segmented, MoneyInput, confirmDialog } from '../components/ui'
 import { resizeImage } from '../utils/image'
 import { printHtml, receiptHtml } from '../utils/print'
 import { isoDateInput } from '../utils/format'
@@ -57,26 +57,35 @@ export default function SettingsPage() {
     const file = e.target.files?.[0]
     if (!file) return
     const reader = new FileReader()
-    reader.onload = () => {
+    reader.onload = async () => {
+      let data
       try {
-        const data = JSON.parse(reader.result)
+        data = JSON.parse(reader.result)
         if (!Array.isArray(data.users) || !Array.isArray(data.products) || !data.settings) throw new Error()
-        if (!window.confirm('Restaurar este backup? Todos os dados atuais serão substituídos.')) return
-        replaceDb(data)
-        toast('Backup restaurado.')
-        logout()
       } catch {
         toast('Arquivo de backup inválido.', 'error')
+        return
       }
+      const ok = await confirmDialog({ title: 'Restaurar backup?', message: 'Todos os dados atuais serão substituídos pelos do arquivo.', confirmLabel: 'Restaurar', danger: true })
+      if (!ok) return
+      replaceDb(data)
+      toast('Backup restaurado.')
+      logout()
     }
     reader.readAsText(file)
     e.target.value = ''
   }
 
-  function clearSales() {
+  async function clearSales() {
     if (openSession(db)) return toast('Feche o caixa antes.', 'error')
-    const typed = window.prompt('Isto apaga TODAS as vendas, caixas e movimentações de estoque (produtos, clientes e usuários ficam). Digite APAGAR para confirmar.')
-    if (typed !== 'APAGAR') return
+    const ok = await confirmDialog({
+      title: 'Apagar vendas e movimentos?',
+      message: 'Apaga todas as vendas, caixas e movimentações de estoque. Produtos, clientes e usuários continuam.',
+      confirmLabel: 'Apagar',
+      danger: true,
+      typeToConfirm: 'APAGAR',
+    })
+    if (!ok) return
     update((d) => {
       d.sales = []
       d.cashSessions = []
@@ -87,9 +96,15 @@ export default function SettingsPage() {
     toast('Movimentos apagados.')
   }
 
-  function resetAll() {
-    const typed = window.prompt('Isto apaga TUDO e volta para a configuração inicial. Faça um backup antes. Digite APAGAR TUDO para confirmar.')
-    if (typed !== 'APAGAR TUDO') return
+  async function resetAll() {
+    const ok = await confirmDialog({
+      title: 'Apagar tudo?',
+      message: 'Apaga todos os dados e volta para a configuração inicial. Baixe um backup antes.',
+      confirmLabel: 'Apagar tudo',
+      danger: true,
+      typeToConfirm: 'APAGAR TUDO',
+    })
+    if (!ok) return
     replaceDb(null)
     logout()
   }

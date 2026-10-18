@@ -3,16 +3,23 @@ import { X, Search, ImageOff } from 'lucide-react'
 import { decimal, parseMoney, initials } from '../utils/format'
 import { useStore } from '../store/StoreContext'
 
+const modalStack = []
+
 export function Modal({ title, subtitle, onClose, children, footer, size = 'md', className = '' }) {
+  const id = useId()
   useEffect(() => {
-    const onKey = (e) => e.key === 'Escape' && onClose?.()
-    window.addEventListener('keydown', onKey)
+    modalStack.push(id)
     document.body.classList.add('modal-open')
     return () => {
-      window.removeEventListener('keydown', onKey)
-      document.body.classList.remove('modal-open')
+      modalStack.splice(modalStack.indexOf(id), 1)
+      if (!modalStack.length) document.body.classList.remove('modal-open')
     }
-  }, [onClose])
+  }, [id])
+  useEffect(() => {
+    const onKey = (e) => e.key === 'Escape' && modalStack[modalStack.length - 1] === id && onClose?.()
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [id, onClose])
   return (
     <div className="modal-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose?.()}>
       <div className={`modal modal-${size} ${className}`} role="dialog" aria-modal="true" aria-label={title}>
@@ -192,21 +199,48 @@ export function Stat({ label, value, hint, icon, tone }) {
   )
 }
 
-export function Confirm({ title, message, confirmLabel = 'Confirmar', danger, onConfirm, onClose, children }) {
+// Confirmação dentro do sistema: await confirmDialog({ title, message, confirmLabel, danger, typeToConfirm })
+let pushConfirm = null
+export function confirmDialog(options) {
+  return new Promise((resolve) => (pushConfirm ? pushConfirm({ ...options, resolve }) : resolve(false)))
+}
+
+export function ConfirmHost() {
+  const [req, setReq] = useState(null)
+  const [typed, setTyped] = useState('')
+  useEffect(() => {
+    pushConfirm = (r) => {
+      setTyped('')
+      setReq(r)
+    }
+    return () => { pushConfirm = null }
+  }, [])
+  if (!req) return null
+  const close = (value) => {
+    req.resolve(value)
+    setReq(null)
+  }
+  const ok = !req.typeToConfirm || typed.trim().toUpperCase() === req.typeToConfirm
   return (
     <Modal
-      title={title}
-      onClose={onClose}
+      title={req.title || 'Confirmar'}
       size="sm"
+      onClose={() => close(false)}
       footer={
         <>
-          <button className="btn btn-ghost" onClick={onClose}>Voltar</button>
-          <button className={`btn ${danger ? 'btn-danger' : 'btn-primary'}`} onClick={onConfirm}>{confirmLabel}</button>
+          <button className="btn btn-ghost" onClick={() => close(false)}>Voltar</button>
+          <button className={`btn ${req.danger ? 'btn-danger' : 'btn-primary'}`} disabled={!ok} onClick={() => close(true)} autoFocus={!req.typeToConfirm}>
+            {req.confirmLabel || 'Confirmar'}
+          </button>
         </>
       }
     >
-      {message && <p>{message}</p>}
-      {children}
+      {req.message && <p>{req.message}</p>}
+      {req.typeToConfirm && (
+        <Field label={`Digite ${req.typeToConfirm} para confirmar`}>
+          <input value={typed} onChange={(e) => setTyped(e.target.value)} autoFocus onKeyDown={(e) => e.key === 'Enter' && ok && close(true)} />
+        </Field>
+      )}
     </Modal>
   )
 }

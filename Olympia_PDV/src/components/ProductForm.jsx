@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from 'react'
 import { ImagePlus, Plus, X, Trash2 } from 'lucide-react'
-import { Modal, Field, MoneyInput, ColorDot, Switch } from './ui'
+import { Modal, Field, MoneyInput, ColorDot, Switch, confirmDialog } from './ui'
 import VariantMatrix, { cellKey } from './VariantMatrix'
 import { useStore } from '../store/StoreContext'
 import { SIZE_PRESETS, COLOR_PRESETS, createProduct, buildVariants, applyStock, uid, nowIso } from '../store/model'
@@ -105,14 +105,16 @@ export default function ProductForm({ product, duplicateOf, onClose }) {
     onClose()
   }
 
-  function remove() {
+  async function remove() {
     const sold = db.sales.some((s) => s.items.some((i) => i.productId === product.id))
     if (sold) {
-      if (!window.confirm('Este produto já tem vendas. Ele será apenas desativado (some do PDV, mas fica no histórico). Continuar?')) return
+      const ok = await confirmDialog({ title: 'Desativar produto?', message: 'Este produto já tem vendas. Ele será desativado: some do PDV, mas continua no histórico.', confirmLabel: 'Desativar' })
+      if (!ok) return
       update((d) => { d.products.find((x) => x.id === product.id).active = false })
       toast('Produto desativado.')
     } else {
-      if (!window.confirm(`Excluir “${product.name}” definitivamente?`)) return
+      const ok = await confirmDialog({ title: 'Excluir produto?', message: `“${product.name}” será excluído definitivamente.`, confirmLabel: 'Excluir', danger: true })
+      if (!ok) return
       update((d) => {
         d.products = d.products.filter((x) => x.id !== product.id)
       })

@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { Plus, Users, MessageCircle, Pencil, Trash2 } from 'lucide-react'
 import { useStore } from '../store/StoreContext'
 import { can } from '../store/model'
-import { PageHeader, SearchInput, Empty, Modal, Stat, Badge } from '../components/ui'
+import { PageHeader, SearchInput, Empty, Modal, Stat, Badge, confirmDialog } from '../components/ui'
 import CustomerForm from '../components/CustomerForm'
 import { money, normalize, onlyDigits, maskPhone, dateOnly, formatAddress, initials, pad } from '../utils/format'
 
@@ -83,9 +83,9 @@ function CustomerDetail({ id, stats, onClose, onEdit }) {
   const sales = db.sales.filter((s) => s.customerId === id).slice().reverse()
   const wa = onlyDigits(c.phone)
 
-  function remove() {
+  async function remove() {
     if (sales.length) return toast('Cliente com vendas não pode ser excluído.', 'error')
-    if (!window.confirm(`Excluir ${c.name}?`)) return
+    if (!(await confirmDialog({ title: 'Excluir cliente?', message: `${c.name} será excluído.`, confirmLabel: 'Excluir', danger: true }))) return
     update((d) => { d.customers = d.customers.filter((x) => x.id !== id) })
     onClose()
   }

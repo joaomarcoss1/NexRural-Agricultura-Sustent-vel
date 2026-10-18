@@ -5,7 +5,7 @@ import {
 import { useStore } from './store/StoreContext'
 import { can, openSession } from './store/model'
 import { Logo } from './components/Logo'
-import { Toasts } from './components/ui'
+import { Toasts, ConfirmHost } from './components/ui'
 import { initials } from './utils/format'
 import Setup from './pages/Setup'
 import Login from './pages/Login'
@@ -95,6 +95,7 @@ export default function App() {
         </div>
         <Page key={current.id} />
       </main>
+      <ConfirmHost />
       <Toasts />
     </div>
   )
