@@ -15,6 +15,8 @@ for y in range(H):
 # left feather only above the hand zone
 for x in range(100):
     a[:395,x]*=min(1,max(0,(x-38)/60))
+for x in range(16):
+    a[395:,x]*=x/16
 al=Image.fromarray((a*255).astype(np.uint8))
 w.putalpha(al); w.save(A+'woman.png')
 
@@ -23,7 +25,7 @@ rgb=np.array(one.crop((X0,0,X0+W,H))).astype(int)
 r,g,b=rgb[...,0],rgb[...,1],rgb[...,2]
 skin=((r>130)&(r>g+15)&(g>b-5)&(r-b>40)).astype(np.uint8)*255
 poly=Image.new('L',(W,H),0); d=ImageDraw.Draw(poly)
-d.polygon([(40,440),(150,424),(145,548),(4,548),(4,492),(26,478)],fill=255)           # holding hand (asset coords)
+d.polygon([(10,428),(150,424),(145,548),(10,548)],fill=255)           # holding hand (asset coords)
 d.polygon([(162,422),(426,422),(426,548),(162,548)],fill=255)       # pointing hand + back of hand
 m=Image.fromarray(skin).filter(ImageFilter.MaxFilter(5)).filter(ImageFilter.MinFilter(5))
 m=m.point(lambda v:255 if v>127 else 0).filter(ImageFilter.MinFilter(3))
