@@ -15,8 +15,8 @@ for y in range(H):
 # left feather only above the hand zone
 for x in range(100):
     a[:395,x]*=min(1,max(0,(x-38)/60))
-for x in range(16):
-    a[395:,x]*=x/16
+for x in range(5):
+    a[395:,x]*=x/5
 al=Image.fromarray((a*255).astype(np.uint8))
 w.putalpha(al); w.save(A+'woman.png')
 
