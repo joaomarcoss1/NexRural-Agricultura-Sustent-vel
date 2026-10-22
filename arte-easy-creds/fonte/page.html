@@ -1,0 +1,107 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:1122px;height:1402px;position:relative;overflow:hidden;font-family:'Inter','Liberation Sans',sans-serif;color:#fff;
+ background:radial-gradient(1000px 700px at 85% 15%,#1c5fe0 0%,rgba(28,95,224,0) 60%),linear-gradient(170deg,#0a3aa6 0%,#082c86 45%,#061f66 100%)}
+.abs{position:absolute}
+.glow{position:absolute;left:-200px;top:520px;width:900px;height:700px;background:radial-gradient(closest-side,rgba(40,110,255,.35),transparent)}
+.logo{left:36px;top:18px;width:540px}
+.tag{left:44px;top:208px;font-size:33px;font-weight:700;line-height:1.18;letter-spacing:-.2px}
+.tag i{display:block;width:230px;height:4px;margin-top:8px;border-radius:4px;background:linear-gradient(90deg,#ff8a1f,rgba(255,138,31,0))}
+.woman{left:586px;top:0px;width:536px;height:693px}
+.woman>img{position:absolute;left:0;top:0;width:100%;height:100%}
+.card{position:absolute;width:330px;left:-38px;top:447px;transform:rotate(-8deg);border-radius:20px;overflow:hidden;
+ box-shadow:0 18px 30px rgba(0,0,40,.55),0 0 0 2px rgba(255,255,255,.25)}
+.card img{width:100%;display:block}
+.pre{left:40px;top:322px;transform:skewX(-12deg);background:linear-gradient(90deg,#ffa63a,#ff7a12);padding:8px 34px 8px 26px;border-radius:6px;
+ font-size:30px;font-weight:900;color:#0a2a7a;letter-spacing:.5px;box-shadow:0 6px 16px rgba(0,0,0,.3)}
+.pre span{display:inline-block;transform:skewX(12deg)}
+.t1{left:36px;top:378px;font-size:86px;font-weight:900;font-style:italic;letter-spacing:-3.5px;line-height:1;white-space:nowrap;
+ text-shadow:0 6px 0 #c9d6ee,0 12px 24px rgba(0,0,30,.55)}
+.t2{left:30px;top:478px;transform:skewX(-8deg);padding:6px 30px 6px 28px;border-radius:16px;
+ background:linear-gradient(180deg,#ff9a30,#ff6a0a);box-shadow:0 0 0 4px rgba(255,255,255,.12),0 10px 24px rgba(255,100,10,.45)}
+.t2 span{display:inline-block;transform:skewX(8deg);font-size:60px;font-weight:900;letter-spacing:-2px;white-space:nowrap;text-shadow:0 4px 0 rgba(150,50,0,.4)}
+.strip{left:44px;top:596px;transform:skewX(-10deg);background:linear-gradient(90deg,#ffa63a,#ff7a12);padding:8px 26px;border-radius:6px;
+ font-size:25px;font-weight:900;color:#0a2a7a;white-space:nowrap}
+.strip span{display:inline-block;transform:skewX(10deg)}
+.badge{left:690px;top:676px;width:390px;height:68px;border-radius:34px;background:linear-gradient(90deg,#0a2f8f,#1744b8);
+ border:3px solid #ff9a30;box-shadow:0 0 22px rgba(255,150,40,.55),inset 0 0 18px rgba(60,120,255,.5);display:flex;align-items:center;padding-left:20px;gap:14px}
+.badge .tx{font-size:24px;font-weight:900;font-style:italic;line-height:1.05}
+.badge .tx b{color:#ffa63a;display:block}
+.panel{left:40px;top:760px;width:700px;height:440px;background:#fff;border-radius:26px;box-shadow:0 14px 34px rgba(0,0,40,.45)}
+.ptag{left:122px;top:733px;width:490px;height:56px;border-radius:18px;background:linear-gradient(180deg,#ff8a2a,#ff5e12);
+ font-size:31px;font-weight:900;text-align:center;line-height:56px;letter-spacing:.5px;box-shadow:0 6px 14px rgba(255,100,10,.4);z-index:2;white-space:nowrap}
+.rows{left:58px;top:806px;width:664px;display:grid;grid-template-columns:1fr 1fr;gap:12px 14px}
+.row{height:112px;border-radius:16px;background:#eef2fb;display:flex;align-items:center;gap:14px;padding:0 14px;color:#0a2a7a}
+.row .ck{flex:none;width:50px;height:50px;border-radius:50%;background:linear-gradient(180deg,#ffa63a,#ff6a0a);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 8px rgba(255,100,10,.4)}
+.row small{display:block;font-size:19px;font-weight:500;color:#33447a;line-height:1.1}
+.row b{display:block;font-size:24px;font-weight:900;line-height:1.1;margin-top:3px}
+.side{left:776px;top:740px;width:310px}
+.ben{height:112px;border-bottom:2px solid rgba(255,150,40,.7);margin:0 14px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-size:18px;font-weight:800;line-height:1.1}
+.ben:last-child{border:none}
+.ben svg{width:54px;height:54px;margin-bottom:6px}
+.cta{left:40px;top:1224px;width:1042px;height:104px;border-radius:52px;background:linear-gradient(90deg,#0a2f8f,#113a9e);border:3px solid rgba(120,180,255,.7);
+ box-shadow:0 0 26px rgba(70,140,255,.6),inset 0 0 20px rgba(60,120,255,.4);display:flex;align-items:center}
+.cta .wa{margin-left:22px;width:84px;height:84px}
+.cta .l{margin-left:20px;font-size:34px;font-weight:900;line-height:1.05}
+.cta .l small{display:block;font-size:30px;font-weight:700}
+.cta .sep{width:3px;height:56px;background:rgba(255,255,255,.35);margin:0 30px 0 36px}
+.cta .num{width:372px;height:78px;border-radius:39px;background:linear-gradient(180deg,#ffb04a,#ff7410);display:flex;align-items:center;justify-content:center;
+ font-size:42px;white-space:nowrap;font-weight:900;color:#0a2a7a;letter-spacing:-.5px;box-shadow:0 6px 14px rgba(255,100,10,.45)}
+.wave{left:-40px;bottom:-138px;width:1202px;height:150px;border-radius:50%;background:linear-gradient(90deg,#ff7a12,#ffb04a);transform:rotate(-2deg)}
+.wave2{left:-60px;bottom:30px;width:1242px;height:140px;border-radius:50%;background:#082a82;transform:rotate(-1.5deg)}
+.foot{left:0;top:1345px;width:1122px;display:flex;justify-content:center;gap:34px;align-items:center;z-index:3;font-size:19px;font-weight:600}
+.foot div{display:flex;align-items:center;gap:12px;line-height:1.15}
+.foot svg{width:40px;height:40px}
+.foot hr{width:2px;height:42px;border:0;background:#ff9a30}
+</style></head><body>
+<div class="glow"></div>
+<div class="abs wave"></div>
+
+<img class="abs logo" src="logo.png">
+<div class="abs tag">Sua solução em crédito,<br>com atendimento humano<i></i></div>
+
+<div class="abs woman">
+  <img src="woman.png">
+  <div class="card"><img src="card.png"></div>
+  <img src="hands.png">
+</div>
+
+<div class="abs pre"><span>SOLICITE SEU</span></div>
+<div class="abs t1">EMPRÉSTIMO</div>
+<div class="abs t2"><span>BOLSA FAMÍLIA</span></div>
+<div class="abs strip"><span>É FÁCIL, RÁPIDO E SEGURO!</span></div>
+
+<div class="abs badge">
+ <svg width="30" height="42" viewBox="0 0 46 64"><rect x="3" y="3" width="40" height="58" rx="8" fill="none" stroke="#fff" stroke-width="5"/><path d="M13 32l8 9 14-17" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+ <div class="tx">Fácil acesso<b>ao crédito!</b></div>
+</div>
+
+<div class="abs panel"></div>
+<div class="abs ptag">DOCUMENTOS NECESSÁRIOS</div>
+<div class="abs rows" id="rows"></div>
+
+<div class="abs side">
+ <div class="ben"><svg viewBox="0 0 64 64" fill="none" stroke="#ffa63a" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"><path d="M32 6l20 8v16c0 14-9 24-20 28C21 54 12 44 12 30V14z"/><path d="M22 31l8 8 13-15"/></svg>SEGURO<br>E CONFIÁVEL</div>
+ <div class="ben"><svg viewBox="0 0 64 64" fill="none" stroke="#ffa63a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="34" cy="36" r="20"/><path d="M34 36V24M34 36l8 6M28 8h12M34 8v8M10 28h8M6 38h10M10 48h8"/></svg>ATENDIMENTO<br>RÁPIDO</div>
+ <div class="ben"><svg viewBox="0 0 64 64" fill="none" stroke="#ffa63a" stroke-width="4" stroke-linecap="round"><circle cx="32" cy="20" r="8"/><circle cx="14" cy="26" r="6"/><circle cx="50" cy="26" r="6"/><path d="M18 52c0-9 6-14 14-14s14 5 14 14zM4 46c0-7 4-11 10-11M60 46c0-7-4-11-10-11"/></svg>SEM BUROCRACIA<br>DESNECESSÁRIA</div>
+ <div class="ben"><svg viewBox="0 0 64 64" fill="none" stroke="#ffa63a" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"><path d="M32 56C10 40 6 28 6 20a12 12 0 0 1 26-4 12 12 0 0 1 26 4c0 8-4 20-26 36z"/></svg>VOCÊ É<br>NOSSA PRIORIDADE</div>
+</div>
+
+<div class="abs cta">
+ <svg class="wa" viewBox="0 0 64 64"><path fill="#25d366" d="M32 4a28 28 0 0 0-24 42L4 60l15-4A28 28 0 1 0 32 4z"/><path fill="#fff" d="M32 9.5A22.5 22.5 0 0 0 12.6 43.4l-2 7.4 7.6-2A22.5 22.5 0 1 0 32 9.5z"/><path fill="#25d366" d="M24 20c-1.2 0-3 1.2-3.5 3.5s0 5 3 9 8 8 13 9.4c2.6.7 5.4-.2 6.4-2.6.4-1 .4-1.800 0-2l-4.600-2.600c-.6-.3-1.400-.2-1.800.4l-1.600 1.800c-.4.400-1 .500-1.600.200-3.400-1.600-6-4.200-7.600-7.600-.3-.6-.2-1.200.2-1.600l1.600-1.800c.4-.5.500-1.200.2-1.800L26 21c-.4-.8-1-1-2-1z"/></svg>
+ <div class="l">SIMULE GRÁTIS<small>SEU EMPRÉSTIMO</small></div><div class="sep"></div>
+ <div class="num">(99) 98170-8190</div>
+</div>
+
+<div class="abs foot">
+ <div><svg viewBox="0 0 40 40"><path d="M23 3L8 23h10l-3 14 17-22H21z" fill="#ffa63a"/></svg>Mais autonomia<br>para seus projetos</div><hr>
+ <div><svg viewBox="0 0 40 40"><path d="M14 4h12l-3 6c8 4 12 12 10 20-1 5-5 7-13 7S8 35 7 30C5 22 9 14 17 10z" fill="#ffa63a"/><text x="20" y="31" text-anchor="middle" font-size="18" font-weight="900" fill="#0a2a7a">$</text></svg>Realize seus<br>sonhos</div><hr>
+ <div><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="#ffa63a"/><path d="M11 21l7 7 12-14" fill="none" stroke="#0a2a7a" stroke-width="4.500" stroke-linecap="round" stroke-linejoin="round"/></svg>Seu futuro<br>com mais tranquilidade</div>
+</div>
+
+<script>
+const items=[["Documento oficial","RG – frente e verso"],["Últimos 30 dias","Extrato Caixa Tem"],["Que receba SMS","Telefone ativo"],["Completo, com CEP","Endereço"],["Print do Caixa Tem","Dados da conta"],["Para validação","Senha Gov.br"]];
+const ck='<div class="ck"><svg width="30" height="30" viewBox="0 0 30 30"><path d="M6 16l6 6 12-13" fill="none" stroke="#fff" stroke-width="4.500" stroke-linecap="round" stroke-linejoin="round"/></svg></div>';
+document.getElementById('rows').innerHTML=items.map(i=>`<div class="row">${ck}<div><small>${i[0]}</small><b>${i[1]}</b></div></div>`).join('');
+</script>
+</body></html>
