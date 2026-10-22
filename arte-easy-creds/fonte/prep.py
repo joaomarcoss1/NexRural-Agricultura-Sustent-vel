@@ -8,6 +8,36 @@ two=Image.open(S+'images/2.jpg').convert('RGB')
 # --- woman (from ref image 1): crop x 598..1024, y 0..550
 X0=598; W=426; H=550
 w=one.crop((X0,0,X0+W,H)).convert('RGBA')
+arr=np.array(w).astype(np.float32)
+rr,gg,bb=arr[...,0],arr[...,1],arr[...,2]
+mx=np.maximum(np.maximum(rr,gg),bb); mn=np.minimum(np.minimum(rr,gg),bb)
+dark=(mx<122).astype(np.uint8)*255
+bp=Image.new('L',(W,H),0); ImageDraw.Draw(bp).polygon([(10,374),(104,374),(140,440),(140,550),(10,550)],fill=1)
+dm0=Image.fromarray(dark*np.array(bp)).filter(ImageFilter.MaxFilter(7))
+dm=(np.array(dm0.filter(ImageFilter.GaussianBlur(2.5))).astype(np.float32)/255)[...,None]
+skin=((rr>130)&(rr>gg+15)&(rr-bb>40))
+skin=np.array(Image.fromarray(skin.astype(np.uint8)*255).filter(ImageFilter.MaxFilter(9)))>0
+valid=((np.array(dm0)==0)&(~skin)).astype(np.float32); valid[:, :12]=0
+def gk(s):
+    r=int(3*s)+1; x=np.arange(-r,r+1); k=np.exp(-x*x/(2*s*s)); return k/k.sum()
+def gb(a,s):
+    k=gk(s); a=np.apply_along_axis(lambda v:np.convolve(np.pad(v,len(k)//2,mode='edge'),k,mode='valid'),0,a)
+    return np.apply_along_axis(lambda v:np.convolve(np.pad(v,len(k)//2,mode='edge'),k,mode='valid'),1,a)
+fill=np.zeros_like(arr[...,:3]); got=np.zeros((H,W),np.float32)
+for s in (6,14,30,60,120):
+    den=gb(valid,s)
+    ok=(den>0.02)&(got==0)
+    for c in range(3):
+        num=gb(arr[...,c]*valid,s)
+        fill[...,c]=np.where(ok,num/np.maximum(den,1e-3),fill[...,c])
+    got=np.where(ok,1,got)
+loose=((rr>55)&(rr>gg+12)&(rr>bb+20)).astype(np.uint8)*255
+loose=np.array(Image.fromarray(loose).filter(ImageFilter.MinFilter(3)).filter(ImageFilter.GaussianBlur(1)))[...,None].astype(np.float32)/255
+ramp=np.clip((np.arange(H)-372)/4,0,1)[:,None,None].astype(np.float32)
+lramp=np.clip((np.arange(W)-8)/6,0,1)[None,:,None].astype(np.float32)
+dm=dm*(1-loose)*ramp*lramp
+arr[...,:3]=arr[...,:3]*(1-dm)+fill*dm
+w=Image.fromarray(arr.clip(0,255).astype(np.uint8)).convert('RGBA')
 a=np.ones((H,W),dtype=np.float32)
 # bottom fade
 for y in range(H):
@@ -26,7 +56,7 @@ r,g,b=rgb[...,0],rgb[...,1],rgb[...,2]
 skin=((r>130)&(r>g+15)&(g>b-5)&(r-b>40)).astype(np.uint8)*255
 poly=Image.new('L',(W,H),0); d=ImageDraw.Draw(poly)
 d.polygon([(10,428),(150,424),(145,548),(10,548)],fill=255)           # holding hand (asset coords)
-d.polygon([(162,422),(426,422),(426,548),(162,548)],fill=255)       # pointing hand + back of hand
+pass       # pointing hand + back of hand
 m=Image.fromarray(skin).filter(ImageFilter.MaxFilter(5)).filter(ImageFilter.MinFilter(5))
 m=m.point(lambda v:255 if v>127 else 0).filter(ImageFilter.MinFilter(3))
 m=Image.fromarray((np.array(m)*(np.array(poly)>0)).astype(np.uint8)).filter(ImageFilter.GaussianBlur(0.7))
